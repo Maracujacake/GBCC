@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,8 +71,8 @@ function Header() {
             <a href="#disciplinas" className="text-3xl hover:underline">DISCIPLINAS</a>
             <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
             <a href="#informacoes" className="text-3xl hover:underline">INFORMACOES</a>
-            <a href="#duvidas" className="text-3xl hover:underline">DUVIDAS</a>
-          </div>
+            <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
+            </div>
         )}
 
         {/* Opções à Direita (Sempre visível em telas grandes) */}
@@ -78,7 +80,7 @@ function Header() {
           <nav className="font-jersey flex space-x-16">
             <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
             <a href="#informacoes" className="text-3xl hover:underline">INFORMACOES</a>
-            <a href="#duvidas" className="text-3xl hover:underline">DUVIDAS</a>
+            <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
           </nav>
         )}
       </div>

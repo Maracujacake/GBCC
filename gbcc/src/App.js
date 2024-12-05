@@ -1,17 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header';
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Duvidas from './pages/Duvidas';
+import LocalizacaoDuvidas from './pages/LocalizacaoDuvidas';
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/duvidas" element={<Duvidas />} />
+        <Route path="/localizacao" element={<LocalizacaoDuvidas />} />
+      </Routes>
+    </Router>
   );
 }
 
