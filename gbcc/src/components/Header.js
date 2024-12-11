@@ -49,7 +49,7 @@ function Header() {
               className="h-42 w-42 object-contain"
             />
           )}
-          <p className="text-4xl text-white">BCC - UFSCar</p>
+          <Link to="/" className="text-4xl text-white">BCC - UFSCar</Link>
         </div>
 
         {/* Menu de Hamburguer (Aparece em telas pequenas) */}

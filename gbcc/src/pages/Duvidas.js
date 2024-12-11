@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
-import DuvidasWelcome from '../components/DuvidasWelcome';
-import DuvidasContribuicao from '../components/DuvidasContribuicao';
-import TiposDuvidas from '../components/TiposDuvidas';
+import DuvidasWelcome from '../components/DuvidasPage/DuvidasWelcome';
+import DuvidasContribuicao from '../components/DuvidasPage/DuvidasContribuicao';
+import TiposDuvidas from '../components/DuvidasPage/TiposDuvidas';
 
 function Duvidas() {
   return (

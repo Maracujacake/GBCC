@@ -5,7 +5,9 @@ function AulasCampus() {
   return (
     <div className="w-full bg-[#0C0F14] text-white p-8 rounded-md">
       {/* Título principal */}
-      <h1 className="text-[#D70082] font-jersey text-6xl mb-4">AULAS E CAMPUS:</h1>
+      <h1 id="aulas-campus-section" className="text-[#D70082] font-jersey text-6xl mb-4">
+        <a href="#aulas-campus-content" className="hover:underline">AULAS E CAMPUS:</a>
+      </h1>
 
       {/* LOCALIZAÇÃO */}
       <div className="mb-6">

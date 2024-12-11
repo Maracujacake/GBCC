@@ -1,5 +1,5 @@
 import React from 'react';
-import axolotou from '../assets/axolote_duvidas.png'; // Substitua pelo caminho correto da sua imagem
+import axolotou from '../../assets/axolote_duvidas.png';
 
 function DuvidasContribuicao() {
   return (
