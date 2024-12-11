@@ -25,7 +25,7 @@ function TiposDuvidas() {
 
       {/* LOCOMOÇÃO */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-[#1DB954]">LOCOMOÇÃO</h2>
+        <Link to="/locomocao" className="text-2xl font-bold text-[#1DB954] hover:underline">LOCOMOÇÃO</Link>
         <ul className="list-disc list-inside ml-4 text-2xl">
           <li>ÔNIBUS</li>
           <li>CARONAS</li>
