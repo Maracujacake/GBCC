@@ -35,7 +35,7 @@ function Header() {
         {/* Esquerda */}
         {!isMobile && (
           <nav className="font-jersey flex space-x-36">
-            <a href="#calendario" className="text-3xl hover:underline">CALENDARIO</a>
+            <Link to="/calendario" className="text-3xl hover:underline">CALENDARIO</Link>
             <a href="#disciplinas" className="text-3xl hover:underline">DISCIPLINAS</a>
           </nav>
         )}
@@ -67,7 +67,7 @@ function Header() {
             <button onClick={toggleMenu} className="text-white text-3xl">
                   &#9776; {/* Ícone de menu de hambúrguer */}
               </button>
-            <a href="#calendario" className="text-3xl hover:underline">CALENDARIO</a>
+            <Link to="/calendario" className="text-3xl hover:underline">CALENDARIO</Link>
             <a href="#disciplinas" className="text-3xl hover:underline">DISCIPLINAS</a>
             <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
             <a href="#informacoes" className="text-3xl hover:underline">INFORMACOES</a>

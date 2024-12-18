@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Duvidas from './pages/Duvidas';
 import LocalizacaoDuvidas from './pages/LocalizacaoDuvidas';
 import LocomocaoDuvidas from './pages/LocomocaoDuvidas';
+import DisciplinasDuvidas from './pages/DisciplinasDuvidas';
+import CalendarioPage from './pages/CalendarioPage';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/duvidas" element={<Duvidas />} />
         <Route path="/localizacao" element={<LocalizacaoDuvidas />} />
         <Route path="/locomocao" element={<LocomocaoDuvidas />} />
+        <Route path="/disciplinas" element={<DisciplinasDuvidas />} />
+        <Route path="/calendario" element={< CalendarioPage />} />
       </Routes>
     </Router>
   );

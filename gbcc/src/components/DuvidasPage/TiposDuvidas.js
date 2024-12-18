@@ -34,7 +34,7 @@ function TiposDuvidas() {
 
       {/* DISCIPLINAS */}
       <div>
-        <h2 className="text-2xl font-bold text-[#FF4500]">DISCIPLINAS</h2>
+        <Link to="/disciplinas" className="text-2xl font-bold text-[#FF4500] hover:underline">DISCIPLINAS</Link>
         <ul className="list-disc list-inside ml-4 text-2xl">
           <li>ROADMAP</li>
           <li>HORAS COMPLEMENTARES</li>

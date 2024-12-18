@@ -1,13 +1,10 @@
 import React from 'react';
 import Header from '../components/Header';
 import axolotou from '../assets/axolote_locomocao.png';
-import AulasCampus from '../components/AulasCampusPage/AulasCampus';
-import SaoCarlos from '../components/AulasCampusPage/SaoCarlos';
-import SaoPaulo from '../components/AulasCampusPage/SaoPaulo';
-import AulasCampusContent from '../components/AulasCampusPage/AulasCampusContent';
-import SaoCarlosContent from '../components/AulasCampusPage/SaoCarlosContent';
-import SaoPauloContent from '../components/AulasCampusPage/SaoPauloContent';
 import Onibus from '../components/LocomocaoPage/Onibus';
+import OnibusContent from '../components/LocomocaoPage/OnibusContent';
+import Caronas from '../components/LocomocaoPage/Caronas';
+import CaronasContent from '../components/LocomocaoPage/CaronasContent';
 
 function LocomocaoDuvidas() {
   return (
@@ -29,7 +26,7 @@ function LocomocaoDuvidas() {
             className="w-3/4 h-auto mb-6 object-contain" 
             style={{ minWidth: 'clamp(18rem, 20%, 50%)' }}
           />
-          <SaoCarlos/>
+          <Caronas/>
         </div>
 
 
@@ -43,11 +40,11 @@ function LocomocaoDuvidas() {
 
       {/* Aulas e campus centralizado*/}
       <div className="flex justify-center items-center px-8 py-16">
-        <AulasCampusContent />
+        <OnibusContent />
       </div>
 
       <div className="flex justify-center items-center px-8 py-16">
-        <SaoCarlosContent />
+        <CaronasContent />
       </div>
 
 

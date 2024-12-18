@@ -1,15 +1,15 @@
 import React from 'react';
 
-function AulasCampusContent() {
+function TccEstagioContent() {
     return (
-        <div id="aulas-campus-content" className="text-center p-8">
+        <div id="tcc-estagio-content" className="text-center p-8">
           {/* Título */}
-          <h1 className="text-[#D70082] font-jersey text-6xl mb-4">AULAS E CAMPUS</h1>
+          <h1 className="text-[#00B0D7] font-jersey text-6xl mb-4"> TCC | ESTAGIO</h1>
 
 
             <div className="py-12">
-                <h2 className="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde terei as aulas?</h2>
-                <p className="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+                <h2 className="text-[#00B0D7] font-jersey text-4xl text-left mb-4">Posso escolher entre TCC e Estágio?</h2>
+                <p className="text-[#00B0D7] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -18,8 +18,8 @@ function AulasCampusContent() {
             </div>
 
             <div  className="py-12">
-                <h2 className="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde posso almoçar ou lanchar?</h2>
-                <p className="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+                <h2 className="text-[#00B0D7] font-jersey text-4xl text-left mb-4">O estágio é remunerado?</h2>
+                <p className="text-[#00B0D7] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -28,8 +28,8 @@ function AulasCampusContent() {
             </div>
 
             <div  className="py-12">
-                <h2 className="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde pego ônibus?</h2>
-                <p className="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+                <h2 className="text-[#00B0D7] font-jersey text-4xl text-left mb-4">Quando posso realizar o estagio?</h2>
+                <p className="text-[#00B0D7] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -41,4 +41,4 @@ function AulasCampusContent() {
     );
 }
 
-export default AulasCampusContent;
+export default TccEstagioContent;
