@@ -6,6 +6,7 @@ import LocalizacaoDuvidas from './pages/LocalizacaoDuvidas';
 import LocomocaoDuvidas from './pages/LocomocaoDuvidas';
 import DisciplinasDuvidas from './pages/DisciplinasDuvidas';
 import CalendarioPage from './pages/CalendarioPage';
+import Informacoes from './pages/InformacoesPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/locomocao" element={<LocomocaoDuvidas />} />
         <Route path="/disciplinas" element={<DisciplinasDuvidas />} />
         <Route path="/calendario" element={< CalendarioPage />} />
+        <Route path="/informacoes" element={<Informacoes />} />
       </Routes>
     </Router>
   );

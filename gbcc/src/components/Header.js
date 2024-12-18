@@ -79,7 +79,7 @@ function Header() {
         {!isMobile && (
           <nav className="font-jersey flex space-x-16">
             <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
-            <a href="#informacoes" className="text-3xl hover:underline">INFORMACOES</a>
+            <Link to="/informacoes" className="text-3xl hover:underline">INFORMACOES</Link>
             <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
           </nav>
         )}
