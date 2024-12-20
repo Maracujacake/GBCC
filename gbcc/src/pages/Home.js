@@ -6,18 +6,25 @@ import Carrousel from '../components/Carrousel';
 
 function Home() {
   return (
-    <div className="Home bg-[#0C0F14] min-h-screen text-white">
+    <div className="Home bg-[#0C0F14] min-h-screen text-white flex flex-col">
+      {/* Header */}
       <Header />
+      
+      {/* Ícones Sociais */}
       <SocialIcons />
-      <div className="flex items-start px-8 space-x-2 mt-8">
-        {/* Texto de introdução na esquerda */}
-        <Welcome />
+      
+      {/* Conteúdo Principal */}
+      <div className="flex flex-col md:flex-row items-start px-8 space-y-6 md:space-x-6 md:space-y-0 mt-8">
         
-        {/* Espaço para o futuro componente à direita */}
-        <div className="w-full h-full flex items-center justify-center space-x-8 p-4 rounded-lg">
-            <Carrousel />
+        {/* Texto de introdução na esquerda */}
+        <div className="flex-1">
+          <Welcome />
         </div>
 
+        {/* Componente à direita */}
+        <div className="flex-1 w-full h-full flex items-center justify-center rounded-lg">
+          <Carrousel />
+        </div>
       </div>
     </div>
   );

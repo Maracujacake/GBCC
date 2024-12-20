@@ -16,10 +16,10 @@ function LocomocaoDuvidas() {
       <h2 className="font-jersey text-6xl text-white text-center py-16 text-[#FF0048]" > LOCOMOCAO </h2>
 
       {/* Conteúdo Principal */}
-      <div className=" flex-wrap flex items-start px-8 py-16 space-x-8">
+      <div className="flex-wrap flex items-start px-8 py-16 space-x-8">
 
         {/* Lado Esquerdo, aulas e campus */}
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col ">
           <img 
             src={axolotou} 
             alt="Axolote pegando onibus" 
@@ -32,7 +32,7 @@ function LocomocaoDuvidas() {
 
 
         {/* Lado Direito, imagem */}
-        <div className="flex-1 p-6 rounded-md">
+        <div className="sm:p-y-0 flex-1 p-6 rounded-md">
           <Onibus/>
         </div>
 
