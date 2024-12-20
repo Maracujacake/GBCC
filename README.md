@@ -85,7 +85,9 @@ A responsividade da aplicação é garantida utilizando as **classes utilitária
 
 - Os componentes são conectados através do React Router. No arquivo ```src/App.js```, utilizamos o Router para navegar entre diferentes seções do site. Cada componente é importado e vinculado a uma rota específica.
 
+---
 
+*Projeto implementado para a disciplina de Desenvolvimento de Software para Web 2, no período 2024/2 da UFSCar.*
 
-
+*Aluno: Christian C.S Polli, RA: 798083*
 
