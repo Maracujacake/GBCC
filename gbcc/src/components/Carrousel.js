@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Lista de imagens para o carrossel (substitua com suas próprias imagens)
+// Lista de imagens para o carrossel
 const carouselImages = [
   'https://www.designi.com.br/images/preview/11059133.jpg',
   'https://via.placeholder.com/600x300/33FF57/FFFFFF?text=Imagem+2',
