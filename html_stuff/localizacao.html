@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Dúvidas</title>
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Importa o Tailwind como CDN -->
+  <style>
+    /*
+        Possível adicionar estilos próprios para esse arquivo ou então linkar um arquivo CSS próprio,
+        para ficar mais organizado.
+    */
+  </style>
+</head>
+<body class="bg-[#0C0F14] text-white min-h-screen flex flex-col">
+<!-- Este arquivo foi feito apenas para possível preferência do professor por correção em HTML, o conteúdo e implementação original esta em REACT -->
+
+  <!-- Header -->
+  <header class="bg-[#1A1F24] py-4 px-8 shadow-md">
+    <div class="container mx-auto flex items-center justify-between">
+      <!-- Esquerda -->
+      <nav class="hidden md:flex space-x-36">
+        <a href="/calendario" class="text-3xl text-white hover:underline">CALENDARIO</a>
+        <a href="#disciplinas" class="text-3xl text-white hover:underline">DISCIPLINAS</a>
+      </nav>
+
+      <!-- Centro -->
+      <div class="flex flex-col items-center justify-center">
+        <img src="../gbcc/src/assets/axolote_header.png" alt="Logo" class="h-42 w-42 object-contain">
+        <a href="/" class="text-4xl text-white">BCC - UFSCar</a>
+      </div>
+
+      <!-- Menu de Hambúrguer -->
+      <div class="md:hidden">
+        <button id="hamburgerMenuButton" class="text-white text-3xl">
+          &#9776; <!-- ícone de menu de hambúrguer -->
+        </button>
+      </div>
+
+      <!-- Opções no Menu de Hambúrguer (aparecem em telas pequenas quando o menu está aberto) -->
+      <div id="hamburgerMenu" class="absolute top-0 left-0 w-full bg-[#D70082] text-white flex flex-col items-center space-y-4 py-6 z-50 hidden">
+        <button id="hamburgerMenuButtonClose" class="text-white text-3xl">
+          &#9776;
+        </button>
+        <a href="/calendario" class="text-3xl hover:underline">CALENDARIO</a>
+        <a href="#disciplinas" class="text-3xl hover:underline">DISCIPLINAS</a>
+        <a href="#editais" class="text-3xl hover:underline">EDITAIS</a>
+        <a href="#informacoes" class="text-3xl hover:underline">INFORMACOES</a>
+        <a href="/duvidas" class="text-3xl hover:underline">DÚVIDAS</a>
+      </div>
+
+      <!-- Opções à Direita (sempre visíveis em telas grandes) -->
+      <nav class="hidden md:flex space-x-16">
+        <a href="#editais" class="text-3xl text-white hover:underline">EDITAIS</a>
+        <a href="/informacoes" class="text-3xl text-white hover:underline">INFORMACOES</a>
+        <a href="/duvidas" class="text-3xl text-white hover:underline">DÚVIDAS</a>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    // script para alternar o menu de hambúrguer
+    const hamburgerMenuButton = document.getElementById('hamburgerMenuButton');
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const hamburgerMenuButtonClose = document.getElementById('hamburgerMenuButtonClose');
+
+    hamburgerMenuButton.addEventListener('click', () => {
+      hamburgerMenu.classList.toggle('hidden');
+    });
+
+    hamburgerMenuButtonClose.addEventListener('click', () => {
+      hamburgerMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Conteúdo Principal -->
+  <div class="flex flex-col lg:flex-row items-start px-4 md:px-8 py-8 md:py-16 space-y-8 lg:space-y-0 lg:space-x-8 mt-8">
+    
+    <!-- Lado Esquerdo: DuvidasWelcome + TiposDuvidas -->
+    <div class="flex-1 space-y-8">
+      <!-- Componente DuvidasWelcome -->
+      <div class="w-full flex flex-col items-start px-4 py-6 mt-16 bg-[#0C0F14] text-white">
+        <!-- Título -->
+        <h1 class="font-jersey text-6xl mb-4 text-[#D70082]">DUVIDAS</h1>
+
+        <!-- Texto explicativo -->
+        <p class="text-left font-jersey px-8 text-4xl leading-relaxed">
+          Aqui você encontra todas as informações importantes referentes ao curso de
+          <span class="text-[#D70082]">ciência da computação</span> da UFSCar.
+        </p>
+      </div>
+
+      <!-- Componente TiposDuvidas -->
+      <div class="w-full bg-[#0C0F14] text-white p-8 rounded-md">
+        <!-- Título principal -->
+        <h1 class="text-[#D70082] font-jersey text-4xl mb-4">INFORMAÇÕES GERAIS</h1>
+        
+        <!-- Texto explicativo -->
+        <p class="font-jersey text-2xl leading-relaxed mb-8">
+          Aqui você encontrará informações relevantes sobre a estrutura do curso, localizações, 
+          locomoção e os principais tópicos relacionados ao Bacharelado em Ciência da Computação na UFSCar.
+        </p>
+
+        <!-- LOCALIZAÇÃO -->
+        <div class="mb-6">
+          <a href="/localizacao" class="text-2xl font-bold text-[#D70082] hover:underline"> LOCALIZAÇÃO </a>
+          <ul class="list-disc list-inside ml-4 text-2xl">
+            <li>AULAS e CAMPUS</li>
+            <li>SÃO CARLOS</li>
+            <li>SÃO PAULO (estado)</li>
+          </ul>
+        </div>
+
+        <!-- LOCOMOÇÃO -->
+        <div class="mb-6">
+          <a href="/locomocao" class="text-2xl font-bold text-[#1DB954] hover:underline">LOCOMOÇÃO</a>
+          <ul class="list-disc list-inside ml-4 text-2xl">
+            <li>ÔNIBUS</li>
+            <li>CARONAS</li>
+          </ul>
+        </div>
+
+        <!-- DISCIPLINAS -->
+        <div>
+          <a href="/disciplinas" class="text-2xl font-bold text-[#FF4500] hover:underline">DISCIPLINAS</a>
+          <ul class="list-disc list-inside ml-4 text-2xl">
+            <li>ROADMAP</li>
+            <li>HORAS COMPLEMENTARES</li>
+            <li>TCC || ESTÁGIO</li>
+            <li>EXTENSÃO</li>
+            <li>INICIAÇÃO CIENTÍFICA</li>
+            <li>PRE-REQUISITOS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lado Direito: DuvidasContribuicao -->
+    <div class="flex-1 p-6 rounded-md">
+      <!-- Componente DuvidasContribuicao -->
+      <div class="w-full flex flex-col items-center p-6 rounded-md text-white">
+        <!-- Título -->
+        <h2 class="font-jersey text-4xl mb-6 text-center">ENTRE EM CONTATO</h2>
+
+        <!-- Imagem -->
+        <img
+          src="https://www.designi.com.br/images/preview/11059133.jpg" 
+          alt="Contato"
+          class="w-3/4 h-auto mb-6 object-contain"
+        />
+
+        <!-- Texto -->
+        <p class="text-left font-jersey text-3xl p-2 leading-relaxed">
+          Caso tenha uma dúvida não presente aqui e que considera
+          <span class="text-[#D70082] font-semibold">pertinente</span>, isto é, essa dúvida é significativa, recorrente e sua resposta traria benefícios para você e inúmeros colegas, por favor, envie para o seguinte contato:
+          <br />
+          <span class="text-[#D70082] font-semibold">
+            emailficticio@ufscar.br
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

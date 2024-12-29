@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localização e Dúvidas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0C0F14] text-white">
+<!-- !!! Este arquivo foi feito apenas para possível preferência do professor por correção em HTML, o conteúdo e implementação original esta em REACT !!! -->
+  <!-- Header -->
+  <header class="bg-[#D70082] text-white">
+    <div class="container mx-auto px-2 py-3 flex items-center justify-between">
+      <!-- Esquerda -->
+      <nav class="font-jersey flex space-x-36 hidden md:flex">
+        <a href="/calendario" class="text-3xl hover:underline">CALENDARIO</a>
+        <a href="#disciplinas" class="text-3xl hover:underline">DISCIPLINAS</a>
+      </nav>
+
+      <!-- Centro -->
+      <div class="font-jersey flex flex-col items-center justify-center">
+        <img src="axolote_header.png" alt="Logo" class="h-42 w-42 object-contain">
+        <a href="/" class="text-4xl text-white">BCC - UFSCar</a>
+      </div>
+
+      <!-- Menu de Hambúrguer (Aparece em telas pequenas) -->
+      <div class="md:hidden">
+        <button id="toggle-menu" class="text-white text-3xl">
+          &#9776;
+        </button>
+      </div>
+
+      <!-- Opções no Menu de Hamburguer -->
+      <div id="hamburger-menu" class="absolute top-0 left-0 w-full bg-[#D70082] text-white flex flex-col items-center space-y-4 py-6 z-50 hidden">
+        <button id="toggle-menu-close" class="text-white text-3xl">
+          &#9776;
+        </button>
+        <a href="/calendario" class="text-3xl hover:underline">CALENDARIO</a>
+        <a href="#disciplinas" class="text-3xl hover:underline">DISCIPLINAS</a>
+        <a href="#editais" class="text-3xl hover:underline">EDITAIS</a>
+        <a href="#informacoes" class="text-3xl hover:underline">INFORMACOES</a>
+        <a href="/duvidas" class="text-3xl hover:underline">DÚVIDAS</a>
+      </div>
+
+      <!-- Opções à Direita -->
+      <nav class="font-jersey flex space-x-16 hidden md:flex">
+        <a href="#editais" class="text-3xl hover:underline">EDITAIS</a>
+        <a href="/informacoes" class="text-3xl hover:underline">INFORMACOES</a>
+        <a href="/duvidas" class="text-3xl hover:underline">DÚVIDAS</a>
+      </nav>
+    </div>
+  </header>
+
+  <h2 class="font-jersey text-6xl text-white text-center py-16 text-[#FF4500]">LOCALIZACAO</h2>
+
+  <!-- Conteúdo Principal -->
+  <div class="flex flex-col lg:flex-row items-center lg:items-start px-4 lg:px-8 py-8 lg:py-16 space-y-8 lg:space-y-0 lg:space-x-8">
+    <!-- Lado Esquerdo, aulas e campus -->
+    <div class="flex-1 flex justify-center lg:justify-start p-6 rounded-md">
+      <img src="axolotou.png" alt="Contato" class="w-3/4 h-auto mb-6 object-contain" />
+    </div>
+    <div class="flex-1 flex justify-center lg:justify-start">
+      <!-- AulasCampus Component -->
+      <div class="w-full bg-[#0C0F14] text-white p-8 rounded-md">
+        <!-- Título principal -->
+        <h1 id="aulas-campus-section" class="text-[#D70082] font-jersey text-6xl mb-4">
+          <a href="#aulas-campus-content" class="hover:underline">AULAS E CAMPUS:</a>
+        </h1>
+
+        <!-- LOCALIZAÇÃO -->
+        <div class="mb-6">
+          <ul class="list-disc list-inside ml-4 text-3xl">
+            <li class="py-5 font-jersey text-[#D70082]">Aonde terei as aulas?</li>
+            <li class="py-5 font-jersey text-[#D70082]">Aonde posso almoçar ou lanchar?</li>
+            <li class="py-5 font-jersey text-[#D70082]">Aonde pego o ônibus?</li>
+            <li class="py-5 font-jersey text-[#D70082]">Aonde posso ficar no período entre as aulas?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linha debaixo, sao carlos e sao paulo -->
+  <div class="flex flex-col lg:flex-row items-start lg:items-start px-4 lg:px-8 py-8 space-y-8 lg:space-y-0 lg:space-x-8">
+    <!-- Lado Esquerdo -->
+    <div class="flex-1 flex justify-center lg:justify-start">
+      <!-- SaoCarlos Component -->
+      <div class="w-full bg-[#0C0F14] text-white p-8 rounded-md">
+        <!-- Título principal -->
+        <h1 id="sao-carlos-section" class="text-[#FF7403] font-jersey text-6xl mb-4">
+          <a href="#sao-carlos-content" class="hover:underline">SAO CARLOS:</a>
+        </h1>
+
+        <!-- LOCALIZAÇÃO -->
+        <div class="mb-6">
+          <ul class="list-disc list-inside ml-4 text-3xl">
+            <li class="py-5 font-jersey text-[#FF7403]">Quais localizações são ideais para morar?</li>
+            <li class="py-5 font-jersey text-[#FF7403]">Aonde ir no tempo livre?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lado Direito -->
+    <div class="sm:p-0 flex-1 flex justify-start p-6 rounded-md">
+      <!-- SaoPaulo Component -->
+      <div class="w-full bg-[#0C0F14] text-white p-8 rounded-md">
+        <!-- Título principal -->
+        <h1 id="sao-paulo-section" class="text-[#6F00FF] font-jersey text-6xl mb-4">
+          <a href="#sao-paulo-content" class="hover:underline">SAO PAULO:</a>
+        </h1>
+
+        <!-- LOCALIZAÇÃO -->
+        <div class="mb-6">
+          <ul class="list-disc list-inside ml-4 text-3xl">
+            <li class="py-5 font-jersey text-[#6F00FF]">Evento</li>
+            <li class="py-5 font-jersey text-[#6F00FF]">Oportunidades</li>
+            <li class="py-5 font-jersey text-[#6F00FF]">Viagens</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aulas e campus centralizado -->
+  <div class="flex justify-center items-center px-4 lg:px-8 py-8 lg:py-16">
+    <!-- AulasCampusContent Component -->
+    <div id="aulas-campus-content" class="text-center p-8">
+      <!-- Título -->
+      <h1 class="text-[#D70082] font-jersey text-6xl mb-4">AULAS E CAMPUS</h1>
+
+      <div class="py-12">
+        <h2 class="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde terei as aulas?</h2>
+        <p class="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+      </div>
+
+      <div class="py-12">
+        <h2 class="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde posso almoçar ou lanchar?</h2>
+        <p class="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+      </div>
+
+      <div class="py-12">
+        <h2 class="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde pego ônibus?</h2>
+        <p class="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+      </div>
+
+      <div class="py-12">
+        <h2 class="text-[#D70082] font-jersey text-4xl text-left mb-4">Aonde posso ficar entre as aulas?</h2>
+        <p class="text-[#D70082] font-jersey text-left text-2xl mb-4 leading-relaxed indent-8">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center px-4 lg:px-8 py-8 lg:py-16">
+    <!-- SaoCarlosContent Component -->
+    <div id="sao-carlos-content" class="text-center p-8">
+      <h1 class="text-[#FF7403] font-jersey text-6xl mb-4">SÃO CARLOS</h1>
+      <p class="text-[#FF7403] font-jersey text-left text-2xl mb-4">
+        São Carlos é uma cidade com diversas opções de lazer e moradia para estudantes.
+        Aqui você pode escolher entre bairros tranquilos e bem localizados, com acesso fácil ao campus da universidade.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center px-4 lg:px-8 py-8 lg:py-16">
+    <!-- SaoPauloContent Component -->
+    <div id="sao-paulo-content" class="text-center p-8">
+      <h1 class="text-[#6F00FF] font-jersey text-6xl mb-4">SÃO PAULO</h1>
+      <p class="text-[#6F00FF] font-jersey text-left text-2xl mb-4">
+        São Paulo oferece várias oportunidades culturais e de eventos.
+        Explore a cidade e aproveite suas opções de transporte e serviços para um aproveitamento ainda maior do seu tempo.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript para controlar o menu de hambúrguer
+    const toggleMenuButton = document.getElementById('toggle-menu');
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const toggleMenuCloseButton = document.getElementById('toggle-menu-close');
+
+    toggleMenuButton.addEventListener('click', () => {
+      hamburgerMenu.classList.toggle('hidden');
+    });
+
+    toggleMenuCloseButton.addEventListener('click', () => {
+      hamburgerMenu.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
