@@ -7,6 +7,7 @@ import LocomocaoDuvidas from './pages/LocomocaoDuvidas';
 import DisciplinasDuvidas from './pages/DisciplinasDuvidas';
 import CalendarioPage from './pages/CalendarioPage';
 import Informacoes from './pages/InformacoesPage';
+import PerfilPage from './pages/PerfilPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/disciplinas" element={<DisciplinasDuvidas />} />
         <Route path="/calendario" element={< CalendarioPage />} />
         <Route path="/informacoes" element={<Informacoes />} />
+        <Route path="/perfil" element={<PerfilPage/>}/ >
       </Routes>
     </Router>
   );
