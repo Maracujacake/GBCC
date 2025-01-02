@@ -1,7 +1,18 @@
 import React from 'react';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
-function PerfilPage() {
+const PerfilPage = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Limpa os dados do usuário no localStorage
+    localStorage.removeItem("user");
+
+    // Redireciona para a página de login
+    navigate("/login");
+  };
+
   return (
     <div className="min-h-screen bg-[#0C0F14] text-white">
       {/* Header */}
@@ -42,9 +53,24 @@ function PerfilPage() {
               <p className="text-3xl font-bold mt-2">120h</p>
             </div>
           </div>
+          
         </div>
+        
       </div>
+
+      <div className="flex justify-center items-center min-h-screen bg-[#0C0F14] text-white">
+        {/* Botão de Logout */}
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-500"
+        >
+          Sair
+        </button>
+      </div>
+
     </div>
+
+    
   );
 }
 

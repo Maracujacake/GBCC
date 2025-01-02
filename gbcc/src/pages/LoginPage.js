@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import api from "../api"; // Importa a instância do axios
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api";
 import axolotou from "../assets/axolote_login.png";
 import Header from "../components/Header";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -10,14 +10,26 @@ const LoginPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Verificar se o usuário já está logado
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/perfil"); // Redireciona para /perfil se já estiver logado
+    }
+  }, [navigate]);
+
   const handleLogin = async () => {
     try {
       const response = await api.post("/alunos/login", {
         email,
         senha,
       });
-      console.log(response.data); // Para debug
-      navigate("/perfil"); // Redireciona para a página de perfil
+
+      // Armazenar os dados no localStorage
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      // Redirecionar para a página de perfil
+      navigate("/perfil");
     } catch (err) {
       setError(err.response?.data?.error || "Erro ao realizar login");
     }
@@ -30,7 +42,7 @@ const LoginPage = () => {
         <div className="bg-[#D70082] rounded-lg w-96 p-8 flex flex-col items-center shadow-lg">
           <div className="mb-6">
             <img
-              src={axolotou} 
+              src={axolotou}
               alt="Logo"
               className="rounded-full w-24 h-24"
             />
@@ -63,7 +75,7 @@ const LoginPage = () => {
             />
           </div>
 
-          {error && <p className="text-black text-sm mb-4">{error}</p>}
+          {error && <p className="text-black bg-red-100 text-sm mb-4 p-2 rounded">{error}</p>}
 
           <div className="w-full mb-6 text-center text-sm text-gray-200">
             <a href="#" className="block mb-2 hover:underline">
