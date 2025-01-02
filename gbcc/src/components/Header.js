@@ -36,7 +36,7 @@ function Header() {
         {!isMobile && (
           <nav className="font-jersey flex space-x-36">
             <Link to="/calendario" className="text-3xl hover:underline">CALENDARIO</Link>
-            <Link to="/perfil" className="text-3xl hover:underline">PERFIL</Link>
+            <Link to="/login" className="text-3xl hover:underline">PERFIL</Link>
           </nav>
         )}
 
@@ -68,7 +68,7 @@ function Header() {
                   &#9776; {/* Ícone de menu de hambúrguer */}
               </button>
             <Link to="/calendario" className="text-3xl hover:underline">CALENDARIO</Link>
-            <Link to="/perfil" className="text-3xl hover:underline">PERFIL</Link>
+            <Link to="/login" className="text-3xl hover:underline">PERFIL</Link>
             <Link to="/editais" className="text-3xl hover:underline">EDITAIS</Link>
             <Link to="/informacoes" className="text-3xl hover:underline">INFORMACOES</Link>
             <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
