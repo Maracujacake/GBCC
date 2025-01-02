@@ -25,6 +25,11 @@ const Aluno = sequelize.define('Aluno', {
         type: DataTypes.JSON,
         allowNull: true,
     },
+    creditos_restantes: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 220, // Valor inicial
+    },
 });
 
 // Relação entre Aluno e Disciplina

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api";
 import axolotou from "../assets/axolote_login.png";
 import Header from "../components/Header";
@@ -38,6 +39,11 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-[#0C0F14] text-white">
       <Header />
+      <div className="flex justify-end px-8 mt-4">
+        <Link to="/registro" className="bg-[#D70082] text-white py-8 px-16 rounded-lg hover:bg-[#b6006c]">
+          Registrar
+        </Link>
+      </div>
       <div className="min-h-screen flex items-center justify-center bg-[#0C0F14] text-white">
         <div className="bg-[#D70082] rounded-lg w-96 p-8 flex flex-col items-center shadow-lg">
           <div className="mb-6">

@@ -10,10 +10,14 @@ import Informacoes from './pages/InformacoesPage';
 import PerfilPage from './pages/PerfilPage';
 import EditaisPage from './pages/EditaisPage';
 import LoginPage from './pages/LoginPage';
+import RegistroPage from './pages/registro/RegistroPage';
+import { RegistroProvider } from './pages/registro/RegistroContext';
+import RegistroPageNome from './pages/registro/RegistroPageNome';
 
 function App() {
   return (
     <Router>
+      <RegistroProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/duvidas" element={<Duvidas />} />
@@ -25,7 +29,14 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/ >
         <Route path="/perfil" element={<PerfilPage/>}/ >
         <Route path="/editais" element={<EditaisPage/>} />
+
+        
+        <Route path="/registro" element={<RegistroPage />} />
+        <Route path="/registro/nome" element={<RegistroPageNome />} />
+        
+        
       </Routes>
+    </RegistroProvider>
     </Router>
   );
 }

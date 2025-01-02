@@ -6,9 +6,8 @@ module.exports = {
     // CREATE
     criarAluno: async (req, res) => {
         const { email, senha, nome, apelido, disciplinas_feitas, atividades_extracurriculares } = req.body;
-
+    
         try {
-            // Criando o aluno
             const aluno = await Aluno.create({
                 email,
                 senha,
@@ -16,17 +15,25 @@ module.exports = {
                 apelido,
                 atividades_extracurriculares,
             });
-
-            // Associando disciplinas ao aluno
+    
             if (disciplinas_feitas && disciplinas_feitas.length > 0) {
                 const disciplinas = await Disciplina.findAll({
                     where: {
-                        id: disciplinas_feitas,
+                        id:  disciplinas_feitas, // Busca todas as disciplinas com IDs especificados
                     },
                 });
-                await aluno.addDisciplinas(disciplinas); // Adiciona as disciplinas ao aluno
+    
+                // Calcula o total de créditos das disciplinas completadas
+                const totalCreditos = disciplinas.reduce((acc, disc) => acc + disc.creditos, 0);
+    
+                // Atualiza os créditos restantes do aluno
+                aluno.creditos_restantes -= totalCreditos;
+                await aluno.save();
+    
+                // Adiciona as disciplinas ao aluno
+                await aluno.addDisciplinas(disciplinas);
             }
-
+    
             res.status(201).json(aluno);
         } catch (err) {
             res.status(400).json({ error: err.message });
