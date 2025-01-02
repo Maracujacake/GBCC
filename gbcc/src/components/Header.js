@@ -69,7 +69,7 @@ function Header() {
               </button>
             <Link to="/calendario" className="text-3xl hover:underline">CALENDARIO</Link>
             <Link to="/perfil" className="text-3xl hover:underline">PERFIL</Link>
-            <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
+            <Link to="/editais" className="text-3xl hover:underline">EDITAIS</Link>
             <Link to="/informacoes" className="text-3xl hover:underline">INFORMACOES</Link>
             <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
             </div>
@@ -78,7 +78,7 @@ function Header() {
         {/* Opções à Direita (Sempre visível em telas grandes) */}
         {!isMobile && (
           <nav className="font-jersey flex space-x-16">
-            <a href="#editais" className="text-3xl hover:underline">EDITAIS</a>
+            <Link to="/editais" className="text-3xl hover:underline">EDITAIS</Link>
             <Link to="/informacoes" className="text-3xl hover:underline">INFORMACOES</Link>
             <Link to="/duvidas" className="text-3xl hover:underline">DÚVIDAS</Link>
           </nav>
