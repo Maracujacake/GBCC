@@ -13,6 +13,9 @@ import LoginPage from './pages/LoginPage';
 import RegistroPage from './pages/registro/RegistroPage';
 import { RegistroProvider } from './pages/registro/RegistroContext';
 import RegistroPageNome from './pages/registro/RegistroPageNome';
+import RegistroPageEmail from './pages/registro/RegistroPageEmail';
+import RegistroDisciplinas from './pages/registro/RegistroPageDisciplinas';
+import RegistroAtividades from './pages/registro/RegistroExtraCurricular';
 
 function App() {
   return (
@@ -33,7 +36,9 @@ function App() {
         
         <Route path="/registro" element={<RegistroPage />} />
         <Route path="/registro/nome" element={<RegistroPageNome />} />
-        
+        <Route path="/registro/email" element={<RegistroPageEmail />} />
+        <Route path="/registro/disciplinas" element={<RegistroDisciplinas />} />
+        <Route path="/registro/atividades" element={<RegistroAtividades />} />
         
       </Routes>
     </RegistroProvider>

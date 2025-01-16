@@ -3,10 +3,6 @@ import React, { createContext, useState, useContext } from 'react';
 // Criando o contexto
 const RegistroContext = createContext();
 
-// Função para usar o contexto
-export const useRegistro = () => {
-  return useContext(RegistroContext);
-};
 
 // Provedor do contexto
 export const RegistroProvider = ({ children }) => {
@@ -31,3 +27,5 @@ export const RegistroProvider = ({ children }) => {
     </RegistroContext.Provider>
   );
 };
+
+export const useRegistro = () => useContext(RegistroContext);
