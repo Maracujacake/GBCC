@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useRegistro } from "./RegistroContext";
 import { API_BASE_URL } from '../../config';
 import Header from '../../components/Header';
@@ -12,6 +13,7 @@ const RegistroAtividades = () => {
     monitoria: false,
     outros: "",
   });
+  const navigate = useNavigate();
 
   console.log(formData.atividades_extracurriculares);
 
@@ -72,6 +74,8 @@ const RegistroAtividades = () => {
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
     }
+
+    navigate('/registro/finaliza');
   };
 
 

@@ -11,28 +11,36 @@ const LoginPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Verifica se o usuário já está logado ao carregar a página
   useEffect(() => {
-    // Verificar se o usuário já está logado
     const user = localStorage.getItem("user");
     if (user) {
       navigate("/perfil"); // Redireciona para /perfil se já estiver logado
     }
-  }, [navigate]);
+  }, [navigate]); // O "navigate" é a dependência aqui
 
   const handleLogin = async () => {
     try {
+      // Enviando os dados de login para a API
       const response = await api.post("/alunos/login", {
         email,
         senha,
       });
 
-      // Armazenar os dados no localStorage
-      localStorage.setItem("user", JSON.stringify(response.data));
-
-      // Redirecionar para a página de perfil
-      navigate("/perfil");
+      // Verificando se a resposta contém a mensagem de login bem-sucedido
+      if (response.data.message === "Login bem sucedido!!!") {
+        const userData = {
+          email: email,
+          senha: senha, // A senha será salva aqui, mas lembre-se de que não é seguro
+        };
+  
+        localStorage.setItem("user", JSON.stringify(userData));
+        // Redirecionar para a página de perfil
+        navigate("/perfil");
+      }
     } catch (err) {
-      setError(err.response?.data?.error || "Erro ao realizar login");
+      // Se ocorreu erro, exibimos uma mensagem de erro para o usuário
+      setError("Login não bem-sucedido. Verifique seus dados e tente novamente.");
     }
   };
 
@@ -40,7 +48,10 @@ const LoginPage = () => {
     <div className="min-h-screen bg-[#0C0F14] text-white">
       <Header />
       <div className="flex justify-end px-8 mt-4">
-        <Link to="/registro" className="bg-[#D70082] text-white py-8 px-16 rounded-lg hover:bg-[#b6006c]">
+        <Link
+          to="/registro"
+          className="bg-[#D70082] text-white py-8 px-16 rounded-lg hover:bg-[#b6006c]"
+        >
           Registrar
         </Link>
       </div>
@@ -81,7 +92,12 @@ const LoginPage = () => {
             />
           </div>
 
-          {error && <p className="text-black bg-red-100 text-sm mb-4 p-2 rounded">{error}</p>}
+          {/* Exibe a mensagem de erro, se houver */}
+          {error && (
+            <p className="text-black bg-red-100 text-sm mb-4 p-2 rounded">
+              {error}
+            </p>
+          )}
 
           <div className="w-full mb-6 text-center text-sm text-gray-200">
             <a href="#" className="block mb-2 hover:underline">

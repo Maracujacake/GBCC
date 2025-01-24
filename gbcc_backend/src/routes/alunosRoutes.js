@@ -6,4 +6,7 @@ router.post('/', alunoController.criarAluno);
 
 router.post('/login', alunoController.loginAluno);
 
+router.post('/informacoes', alunoController.infoAluno); 
+
+
 module.exports = router;

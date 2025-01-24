@@ -16,6 +16,7 @@ import RegistroPageNome from './pages/registro/RegistroPageNome';
 import RegistroPageEmail from './pages/registro/RegistroPageEmail';
 import RegistroDisciplinas from './pages/registro/RegistroPageDisciplinas';
 import RegistroAtividades from './pages/registro/RegistroExtraCurricular';
+import RegistroFinaliza from './pages/registro/RegistroFinaliza';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/registro/email" element={<RegistroPageEmail />} />
         <Route path="/registro/disciplinas" element={<RegistroDisciplinas />} />
         <Route path="/registro/atividades" element={<RegistroAtividades />} />
+        <Route path="/registro/finaliza" element={<RegistroFinaliza />} />
         
       </Routes>
     </RegistroProvider>

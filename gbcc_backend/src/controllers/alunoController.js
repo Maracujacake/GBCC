@@ -63,8 +63,45 @@ module.exports = {
         } 
         
         catch (err) {
+            res.status(500).json({ error: 'Erro ao realizar login. Deu pane no sistema, tente mais tarde. loginAluno' });
+        }
+    },
+
+    infoAluno: async (req, res) => {
+        const { email, senha } = req.body;
+    
+        try {
+            // Encontrar aluno com o email e senha fornecidos
+            const aluno = await Aluno.findOne({
+                where: {
+                    email,
+                    senha,
+                },
+                include: [
+                    {
+                        model: Disciplina, // Inclui as disciplinas do aluno
+                        attributes: ['id', 'nome', 'creditos'], // Retorna apenas os dados importantes das disciplinas
+                        through: { attributes: [] } // Exclui os dados da tabela de associação, se houver
+                    }
+                ]
+            });
+    
+            if (!aluno) {
+                return res.status(404).json({ error: 'Login não realizado, verifique seus dados e tente novamente.' });
+            }
+    
+            // Retorna os dados do aluno, incluindo disciplinas e atividades extracurriculares
+            res.status(200).json({
+                alunoId: aluno.id,
+                nome: aluno.nome,
+                atividades_extracurriculares: aluno.atividades_extracurriculares,
+                disciplinas: aluno.Disciplinas,
+                creditos_restantes: aluno.creditos_restantes // Adiciona o campo créditos restantes
+            });
+        } catch (err) {
             res.status(500).json({ error: 'Erro ao realizar login. Deu pane no sistema, tente mais tarde.' });
         }
     },
+    
 
 };

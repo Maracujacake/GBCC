@@ -199,7 +199,77 @@
             }
           }
         }
-      }
+      },
+      
+        "/gbcc_api/alunos/informacoes": {
+          "post": {
+            "summary": "Obter informações do aluno",
+            "description": "Retorna as informações do aluno, incluindo disciplinas e atividades extracurriculares",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "email": { "type": "string", "example": "joao@email.com" },
+                      "senha": { "type": "string", "example": "senha123" }
+                    },
+                    "required": ["email", "senha"]
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Informações do aluno obtidas com sucesso",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer", "example": 1 },
+                        "nome": { "type": "string", "example": "João Silva" },
+                        "atividades_extracurriculares": { 
+                          "type": "array", 
+                          "items": { "type": "string" }, 
+                          "example": ["Iniciação Científica"] 
+                        },
+                        "disciplinas": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "integer", "example": 1 },
+                              "nome": { "type": "string", "example": "Algoritmos" },
+                              "creditos": { "type": "integer", "example": 4 }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Erro ao buscar informações do aluno",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      
+      
+
     }
   }
   
