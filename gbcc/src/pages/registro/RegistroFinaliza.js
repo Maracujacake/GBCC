@@ -1,25 +1,19 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { useRegistro } from "./RegistroContext"; // Assumindo que você está usando o contexto para o estado global
 import Header from '../../components/Header';
 import axolotou from '../../assets/axolote_registro_1.png';
 
 const RegistroFinaliza = () => {
-  const navigate = useNavigate(); // Hook para navegação
+  const { clearFormData } = useRegistro(); // Aqui, você pode acessar os dados do contexto
+  const navigate = useNavigate();
 
-  // Função para navegar para a página do mapa de disciplinas
-  const handleMapaClick = () => {
-    navigate('/'); // Mudar futuramente quando implementar essa bomba
-  };
+  const handleFinalizarRegistro = () => {
+    // Limpar os dados após a finalização do registro
+    clearFormData();
 
-  // Função para navegar para a página das dúvidas frequentes
-  const handleDuvidasClick = () => {
-    navigate('/duvidas'); // Rota das dúvidas frequentes
-  };
-
-  // Função para navegar para a página principal
-  const handleButtonClick = () => {
-    navigate('/'); // Rota do botão inferior
+    // Redirecionar para a página inicial ou outra página
+    navigate('/');
   };
 
   return (
@@ -54,7 +48,7 @@ const RegistroFinaliza = () => {
               </h3>
             </div>
 
-            <div onClick={handleDuvidasClick} className="lg:ml-12 bg-black text-white p-8 w-full lg:w-1/2 h-auto rounded-lg hover:bg-white hover:text-black transition duration-300 cursor-pointer">
+            <div onClick={() => navigate('/duvidas')} className="lg:ml-12 bg-black text-white p-8 w-full lg:w-1/2 h-auto rounded-lg hover:bg-white hover:text-black transition duration-300 cursor-pointer">
               <h3 className="text-lg py-6">
                 Clique aqui para visualizar as <span className="text-[#D70082]">dúvidas mais frequentes que os alunos possuem</span>
               </h3>
@@ -63,10 +57,10 @@ const RegistroFinaliza = () => {
 
           {/* Botão centralizado */}
           <button
-            onClick={handleButtonClick}  // Aqui você pode adicionar a ação do botão
+            onClick={handleFinalizarRegistro} // Agora, apenas limpa e redireciona
             className="mt-4 w-full p-3 rounded-lg bg-white text-[#D70082] hover:bg-gray-200 transition duration-200 cursor-pointer"
           >
-            Voltar para o início
+            Finalizar Registro
           </button>
         </div>
       </div>

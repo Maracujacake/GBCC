@@ -41,6 +41,8 @@ const RegistroDisciplinas = () => {
 
   const handleNextPage = () => {
     updateFormData({ disciplinas_realizadas: selectedDisciplinas });
+    console.log(selectedDisciplinas);
+    console.log("alo" +  formData.disciplinas_realizadas);
     navigate('/registro/atividades');
   };
 

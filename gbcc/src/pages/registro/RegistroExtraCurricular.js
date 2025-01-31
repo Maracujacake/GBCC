@@ -44,7 +44,10 @@ const RegistroAtividades = () => {
       atividadesSelecionadas.push(`Outros: ${atividades.outros}`);
     }
 
-    updateFormData({ atividades_extracurriculares: atividadesSelecionadas });
+    updateFormData({
+      atividades_extracurriculares: atividadesSelecionadas,
+      disciplinas_realizadas: formData.disciplinas_realizadas,  // Garantindo que as disciplinas não sejam sobrescritas
+    });
 
     const alunoData = {
       email: formData.email,
@@ -56,6 +59,7 @@ const RegistroAtividades = () => {
     };
 
     try {
+      console.log("AAAAAAAAAA" + alunoData.disciplinas_feitas);
       const response = await fetch(`${API_BASE_URL}/alunos`, {
         method: 'POST',
         headers: {
