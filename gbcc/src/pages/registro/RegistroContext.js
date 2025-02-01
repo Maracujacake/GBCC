@@ -20,9 +20,21 @@ export const RegistroProvider = ({ children }) => {
   const updateFormData = (data) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
   };
+  
+
+  const clearFormData = () => {
+    setFormData({
+      nome: "",
+      apelido: "",
+      email: "",
+      senha: "",
+      disciplinas_realizadas: [],
+      atividades_extracurriculares: []
+    });
+  };
 
   return (
-    <RegistroContext.Provider value={{ formData, updateFormData }}>
+    <RegistroContext.Provider value={{ formData, updateFormData, clearFormData }}>
       {children}
     </RegistroContext.Provider>
   );

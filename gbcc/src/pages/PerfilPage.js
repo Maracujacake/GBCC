@@ -101,7 +101,7 @@ const PerfilPage = () => {
               <h3 className="text-lg font-semibold text-purple-400">
                 Creditos restantes
               </h3>
-              <p className="text-3xl font-bold mt-2">{userInfo.creditos_restantes}h</p>
+              <p className="text-3xl font-bold mt-2">{userInfo.creditos_restantes}</p>
             </div>
           </div>
 
@@ -114,13 +114,6 @@ const PerfilPage = () => {
               <p className="text-3xl font-bold mt-2">{userInfo.disciplinas.length}</p>
             </div>
 
-            {/* Campo 2: Horas complementares restantes */}
-            <div className="flex flex-col items-center justify-center bg-transparent border border-purple-600 rounded-lg p-6 w-full md:w-1/2">
-              <h3 className="text-lg font-semibold text-purple-400">
-                Horas complementares restantes
-              </h3>
-              <p className="text-3xl font-bold mt-2">120h</p>
-            </div>
           </div>
 
         </div>

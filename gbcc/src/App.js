@@ -17,12 +17,15 @@ import RegistroPageEmail from './pages/registro/RegistroPageEmail';
 import RegistroDisciplinas from './pages/registro/RegistroPageDisciplinas';
 import RegistroAtividades from './pages/registro/RegistroExtraCurricular';
 import RegistroFinaliza from './pages/registro/RegistroFinaliza';
+import Chatbot from './pages/ChatBotPage';
 
 function App() {
   return (
     <Router>
       <RegistroProvider>
       <Routes>
+
+        {/* paginas "principais" */}
         <Route path="/" element={<Home />} />
         <Route path="/duvidas" element={<Duvidas />} />
         <Route path="/localizacao" element={<LocalizacaoDuvidas />} />
@@ -34,13 +37,17 @@ function App() {
         <Route path="/perfil" element={<PerfilPage/>}/ >
         <Route path="/editais" element={<EditaisPage/>} />
 
-        
+        {/* paginas de registro */}
         <Route path="/registro" element={<RegistroPage />} />
         <Route path="/registro/nome" element={<RegistroPageNome />} />
         <Route path="/registro/email" element={<RegistroPageEmail />} />
         <Route path="/registro/disciplinas" element={<RegistroDisciplinas />} />
         <Route path="/registro/atividades" element={<RegistroAtividades />} />
         <Route path="/registro/finaliza" element={<RegistroFinaliza />} />
+
+        {/* pagina chatbot */}
+        <Route path="/chatbot" element={<Chatbot />} />
+      
         
       </Routes>
     </RegistroProvider>
