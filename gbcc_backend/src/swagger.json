@@ -76,7 +76,8 @@
                   "type": "object",
                   "properties": {
                     "nome": { "type": "string", "example": "Algoritmos" },
-                    "creditos": { "type": "integer", "example": 4 }
+                    "creditos": { "type": "integer", "example": 4 },
+                    "obrigatoria": { "type": "boolean", "example": true }  
                   },
                   "required": ["nome", "creditos"]
                 }
@@ -93,7 +94,8 @@
                     "properties": {
                       "id": { "type": "integer" },
                       "nome": { "type": "string" },
-                      "creditos": { "type": "integer" }
+                      "creditos": { "type": "integer" },
+                      "obrigatoria": { "type": "boolean" }
                     }
                   }
                 }
@@ -128,7 +130,8 @@
                       "properties": {
                         "id": { "type": "integer" },
                         "nome": { "type": "string" },
-                        "creditos": { "type": "integer" }
+                        "creditos": { "type": "integer" },
+                        "obrigatoria": { "type": "boolean" }
                       }
                     }
                   }

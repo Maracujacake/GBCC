@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 const Disciplina = require('./disciplina');
+const AlunoDisciplina = require('./alunoDisciplina'); // Modelo de AlunoDisciplina
+
 
 // Definindo o modelo Aluno
 const Aluno = sequelize.define('Aluno', {
@@ -33,7 +35,7 @@ const Aluno = sequelize.define('Aluno', {
 });
 
 // Relação entre Aluno e Disciplina
-Aluno.belongsToMany(Disciplina, { through: 'AlunoDisciplina' });
-Disciplina.belongsToMany(Aluno, { through: 'AlunoDisciplina' });
+Aluno.belongsToMany(Disciplina, { through: AlunoDisciplina });
+Disciplina.belongsToMany(Aluno, { through: AlunoDisciplina });
 
 module.exports = Aluno;

@@ -64,6 +64,15 @@ const PerfilPage = () => {
     return <div>Carregando...</div>;  // Exibe uma mensagem enquanto carrega os dados
   }
 
+  // Dentro do componente PerfilPage, logo após verificar que userInfo está disponível:
+const totalDisciplinas = userInfo.disciplinas.length;
+const disciplinasFeitas = userInfo.disciplinas.filter(
+  (disciplina) =>
+    disciplina.AlunoDisciplina &&
+    disciplina.AlunoDisciplina.status === 1
+).length;
+const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
+
   return (
     <div className="min-h-screen bg-[#0C0F14] text-white">
       {/* Header */}
@@ -91,7 +100,7 @@ const PerfilPage = () => {
             {/* Campo 1: Disciplinas restantes */}
             <div className="flex flex-col items-center justify-center bg-transparent border border-purple-600 rounded-lg p-6 w-full md:w-1/2">
               <h3 className="text-lg font-semibold text-purple-400">
-                Disciplinas Restantes
+                Disciplinas do curso
               </h3>
               <p className="text-3xl font-bold mt-2">{userInfo.disciplinas.length}</p>
             </div>
@@ -111,7 +120,7 @@ const PerfilPage = () => {
               <h3 className="text-lg font-semibold text-purple-400">
                 Disciplinas Restantes
               </h3>
-              <p className="text-3xl font-bold mt-2">{userInfo.disciplinas.length}</p>
+              <p className="text-3xl font-bold mt-2">{disciplinasRestantes}</p>
             </div>
 
           </div>

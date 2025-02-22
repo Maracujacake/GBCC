@@ -4,12 +4,13 @@ module.exports = {
 
     // CREATE
     criarDisciplina: async (req, res) => {
-        const { nome, creditos } = req.body;
+        const { nome, creditos, obrigatoria } = req.body;  // Agora inclui 'obrigatoria'
 
         try {
             const disciplina = await Disciplina.create({
                 nome,
                 creditos,
+                obrigatoria, 
             });
             res.status(201).json(disciplina);
         } catch (err) {

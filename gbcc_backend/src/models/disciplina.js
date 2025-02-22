@@ -11,6 +11,11 @@ const Disciplina = sequelize.define('Disciplina', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    obrigatoria: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,  // Pode ser 'true' para indicar obrigatória ou 'false' para eletiva
+    },
 });
 
 module.exports = Disciplina;

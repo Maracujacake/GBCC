@@ -1,6 +1,9 @@
 const Aluno = require('../models/aluno');
 const Disciplina = require('../models/disciplina');
 const crypto = require('crypto'); // pra criptografia basica da senha do combatente
+const AlunoDisciplina = require('../models/alunoDisciplina');
+const { Op } = require('sequelize');
+
 
 module.exports = {
     // CREATE
@@ -17,23 +20,32 @@ module.exports = {
                 apelido,
                 atividades_extracurriculares, 
             });
+
+            // 1. Associa todas as disciplinas ao aluno com status 0 (não concluída)
+            const todasDisciplinas = await Disciplina.findAll();
+            // A associação em massa passa o mesmo valor para todas as linhas
+            await aluno.addDisciplinas(todasDisciplinas, { through: { status: 0 } });
     
             if (disciplinas_feitas && disciplinas_feitas.length > 0) {
-                const disciplinas = await Disciplina.findAll({
+                const disciplinasSelecionadas  = await Disciplina.findAll({
                     where: { 
                         nome:  disciplinas_feitas, // Busca todas as disciplinas com IDs especificados
                     },
                 });
     
                 // Calcula o total de créditos das disciplinas completadas
-                const totalCreditos = disciplinas.reduce((acc, disc) => acc + disc.creditos, 0);
-    
+                const totalCreditos = disciplinasSelecionadas.reduce((acc, disc) => acc + disc.creditos, 0);
+
+                for (const disciplina of disciplinasSelecionadas) {
+                    await AlunoDisciplina.update(
+                        { status: 1 },
+                        { where: { AlunoId: aluno.id, DisciplinaId: disciplina.id } }
+                    );
+                }
+
                 // Atualiza os créditos restantes do aluno
                 aluno.creditos_restantes -= totalCreditos;
                 await aluno.save();
-    
-                // Adiciona as disciplinas ao aluno
-                await aluno.addDisciplinas(disciplinas);
             }
     
             res.status(201).json(aluno);
@@ -73,34 +85,55 @@ module.exports = {
         const { email, senha } = req.body;
     
         try {
-            // Encontrar aluno com o email e senha fornecidos
+            // Encontre o aluno com base no email e senha
             const aluno = await Aluno.findOne({
-                where: {
-                    email,
-                    senha,
-                },
+                where: { email, senha },
                 include: [
                     {
-                        model: Disciplina, // Inclui as disciplinas do aluno
-                        attributes: ['id', 'nome', 'creditos'], // Retorna apenas os dados importantes das disciplinas
-                        through: { attributes: [] } // Exclui os dados da tabela de associação, se houver
+                        model: Disciplina,
+                        attributes: ['id', 'nome', 'creditos', 'obrigatoria'],
+                        through: {
+                            attributes: ['status', 'AlunoId', 'DisciplinaId'] // Inclui o status da matrícula
+                        }
                     }
-                ]
+                ],
             });
     
             if (!aluno) {
                 return res.status(404).json({ error: 'Login não realizado, verifique seus dados e tente novamente.' });
             }
+            
+            console.log("ate aqui chegou");
+
+
+            // 1. Obter todas as disciplinas obrigatórias
+            const disciplinasObrigatorias = await Disciplina.findAll({
+                where: { obrigatoria: true },
+            });
     
-            // Retorna os dados do aluno, incluindo disciplinas e atividades extracurriculares
+            const disciplinasCursando = aluno.Disciplinas.filter(disciplina => 
+                disciplina.AlunoDisciplina && disciplina.AlunoDisciplina.status === 0
+            );
+
+            // 3. Calcular disciplinas obrigatórias restantes
+            const disciplinasObrigatoriasCursando = disciplinasCursando.filter(disciplina => 
+                disciplina.obrigatoria === true
+            );
+    
+            const obrigatoriasRestantes = disciplinasObrigatorias.length - disciplinasObrigatoriasCursando.length;
+    
+            // Retorna as informações do aluno, incluindo o número de disciplinas obrigatórias restantes
             res.status(200).json({
                 alunoId: aluno.id,
                 nome: aluno.nome,
                 atividades_extracurriculares: aluno.atividades_extracurriculares,
                 disciplinas: aluno.Disciplinas,
-                creditos_restantes: aluno.creditos_restantes // Adiciona o campo créditos restantes
+                creditos_restantes: aluno.creditos_restantes, // Adiciona o campo créditos restantes
+                disciplinasObrigatoriasRestantes: obrigatoriasRestantes // Adiciona o número de disciplinas obrigatórias restantes
             });
+    
         } catch (err) {
+            console.error('Erro ao realizar login:', err);
             res.status(500).json({ error: 'Erro ao realizar login. Deu pane no sistema, tente mais tarde.' });
         }
     },

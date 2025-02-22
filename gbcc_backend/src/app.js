@@ -20,7 +20,7 @@ app.use('/gbcc_api/disciplinas', disciplinaRoutes);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     console.log('Banco de dados sincronizado');
 });
 
