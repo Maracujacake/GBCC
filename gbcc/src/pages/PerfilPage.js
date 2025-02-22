@@ -78,7 +78,7 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
       {/* Header */}
       <Header />
 
-      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-start">
+      <div className="container mx-auto px-4 mt-4 flex flex-col md:flex-row justify-between items-start">
         {/* Seção do Usuário */}
         <div className="flex flex-col items-center w-full md:w-1/3">
           {/* Imagem arredondada */}
@@ -93,6 +93,7 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
           <p className="mt-2 text-gray-400">RA: 12345678</p>
           <p className="text-gray-400">Ano de ingresso: 2022</p>
         </div>
+
 
         {/* Seção de Informações */}
         <div className="flex flex-col w-full md:w-2/3 mt-8 md:mt-0 md:pl-8">
@@ -124,15 +125,26 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
             </div>
 
           </div>
-
+      
         </div>
+
+        
       </div>
 
-      <div className="flex justify-center items-center min-h-screen bg-[#0C0F14] text-white">
+
+      <div className="flex justify-center items-center gap-4 min-h-screen bg-[#0C0F14] text-white">
+        {/* Botão para o roadmap */}
+        <button
+          onClick={() => navigate("/roadmap")}
+          className="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-500 transition duration-300"
+        >
+          Ver Roadmap
+        </button>
+
         {/* Botão de Logout */}
         <button
           onClick={handleLogout}
-          className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-500"
+          className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-500 transition duration-300"
         >
           Sair
         </button>

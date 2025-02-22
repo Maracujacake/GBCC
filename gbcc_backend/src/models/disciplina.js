@@ -16,6 +16,11 @@ const Disciplina = sequelize.define('Disciplina', {
         allowNull: false,
         defaultValue: true,  // Pode ser 'true' para indicar obrigatória ou 'false' para eletiva
     },
+    preRequisitos: {
+        type: DataTypes.JSON, // Armazena um array de nomes das disciplinas pré-requisito
+        allowNull: true,
+        defaultValue: [],
+    },
 });
 
 module.exports = Disciplina;

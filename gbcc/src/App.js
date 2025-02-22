@@ -18,6 +18,7 @@ import RegistroDisciplinas from './pages/registro/RegistroPageDisciplinas';
 import RegistroAtividades from './pages/registro/RegistroExtraCurricular';
 import RegistroFinaliza from './pages/registro/RegistroFinaliza';
 import Chatbot from './pages/ChatBotPage';
+import Roadmap from './pages/RoadMapPerfil';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/ >
         <Route path="/perfil" element={<PerfilPage/>}/ >
         <Route path="/editais" element={<EditaisPage/>} />
+        <Route path="/roadmap" element={<Roadmap/>} />
 
         {/* paginas de registro */}
         <Route path="/registro" element={<RegistroPage />} />

@@ -179,6 +179,34 @@ module.exports = {
           res.status(500).json({ error: 'Erro ao atualizar disciplinas do aluno.' });
         }
       },
+
+
+      atualizarRoadmap: async (req, res) => {
+        const { email, disciplinasSelecionadas } = req.body; // disciplinasSelecionadas: array de IDs de disciplinas
+        try {
+            // Busca o aluno pelo e-mail
+            const aluno = await Aluno.findOne({ where: { email } });
+    
+            if (!aluno) {
+                return res.status(404).json({ error: 'Aluno não encontrado.' });
+            }
+    
+            const alunoId = aluno.id;
+    
+            // Atualiza o status das disciplinas selecionadas
+            for (const disciplinaId of disciplinasSelecionadas) {
+                await AlunoDisciplina.update(
+                    { status: 1 },
+                    { where: { AlunoId: alunoId, DisciplinaId: disciplinaId } }
+                );
+            }
+    
+            res.status(200).json({ message: 'Roadmap atualizado com sucesso!' });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Erro ao atualizar o roadmap do aluno.' });
+        }
+    },
     
 
 };

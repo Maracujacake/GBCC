@@ -8,5 +8,7 @@ router.post('/login', alunoController.loginAluno);
 
 router.post('/informacoes', alunoController.infoAluno); 
 
+router.post('/atualizarRoadmap', alunoController.atualizarRoadmap); 
+
 
 module.exports = router;
