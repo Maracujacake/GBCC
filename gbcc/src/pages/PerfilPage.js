@@ -22,6 +22,7 @@ const defaultIcon = new L.Icon({
 const PerfilPage = () => {
   const [userInfo, setUserInfo] = useState(null);  // Armazena as informações do aluno
   const [location, setLocation] = useState(null); // Armazena a localização do aluno
+  const [aluguels, setAluguels] = useState([]);  // Armazena os alugueis do aluno
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,6 +69,34 @@ const PerfilPage = () => {
 
     fetchUserInfo();
   }, [navigate]);
+
+
+
+
+  useEffect(() => {
+    const fetchAluguels = async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log(user.email);
+      if (user) {
+        try {
+          const response = await fetch(`http://localhost:5000/api/aluno/${user.email}/alugueis`);
+          const data = await response.json();
+          
+          if (response.ok) {
+            setAluguels(data);
+          } else {
+            console.error('Erro ao buscar aluguéis:', data);
+          }
+        } catch (err) {
+          console.error('Erro ao fazer a requisição de aluguéis:', err);
+        }
+      }
+    };
+
+    fetchAluguels();
+  }, []);
+
+
 
 
   useEffect(() => {
@@ -212,6 +241,18 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
             )
           ) : (
             <div>Obtendo localização...</div>
+          )}
+
+
+          {aluguels.length > 0 ? (
+            aluguels.map((aluguel, index) => (
+              <div key={index} className="bg-gray-800 p-4 rounded-lg w-full max-w-lg">
+                <p><strong>ID do Livro:</strong> {aluguel.livro_id}</p>
+                <p><strong>Data de Devolução:</strong> {new Date(aluguel.data_devolucao).toLocaleDateString()}</p>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-400">Nenhum aluguel encontrado.</p>
           )}
 
 
