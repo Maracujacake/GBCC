@@ -9,6 +9,7 @@ const Roadmap = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  // BUSCA DISCIPLINAS E SEUS STATUS RELATIVOS AO ALUNO
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
     setUser(userInfo);
@@ -29,12 +30,24 @@ const Roadmap = () => {
     }
   }, [navigate]);
 
+
   // Separa as disciplinas em dois grupos:
   // - Fundamentais: sem pré-requisitos (ou seja, aquelas que levam a outras)
   // - Avançadas: com pré-requisitos
-  const topLevelDisciplinas = disciplinas.filter(d => !d.preRequisitos || d.preRequisitos.length === 0);
-  const lowerLevelDisciplinas = disciplinas.filter(d => d.preRequisitos && d.preRequisitos.length > 0);
+  const topLevelDisciplinas = disciplinas.filter(d => {
+    const preReqs = typeof d.preRequisitos === 'string' ? JSON.parse(d.preRequisitos) : d.preRequisitos;
+    return !preReqs || preReqs.length === 0;
+  });
+  
+  const lowerLevelDisciplinas = disciplinas.filter(d => {
+    const preReqs = typeof d.preRequisitos === 'string' ? JSON.parse(d.preRequisitos) : d.preRequisitos;
+    return preReqs && preReqs.length > 0;
+  });
 
+  console.log("Pre-requisitos recebidos:");
+  disciplinas.forEach(d => console.log(d.nome, d.preRequisitos, typeof d.preRequisitos));
+
+  
   const handleQuadradoClick = (disciplina) => {
     // Se a disciplina já foi concluída, não permite alteração
     if (disciplina.AlunoDisciplina && disciplina.AlunoDisciplina.status === 1) return;

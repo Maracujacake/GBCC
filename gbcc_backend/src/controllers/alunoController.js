@@ -91,7 +91,7 @@ module.exports = {
                 include: [
                     {
                         model: Disciplina,
-                        attributes: ['id', 'nome', 'creditos', 'obrigatoria'],
+                        attributes: ['id', 'nome', 'creditos', 'obrigatoria', 'preRequisitos'],
                         through: {
                             attributes: ['status', 'AlunoId', 'DisciplinaId'] // Inclui o status da matrícula
                         }
@@ -200,6 +200,23 @@ module.exports = {
                     { where: { AlunoId: alunoId, DisciplinaId: disciplinaId } }
                 );
             }
+
+            // Busca as disciplinas atualizadas para obter seus créditos
+            const disciplinasAtualizadas = await Disciplina.findAll({
+                where: {
+                    id: { [Op.in]: disciplinasSelecionadas }
+                }
+            });
+
+            // calcula o total de créditos das disciplinas atualizadas
+            const totalCreditos = disciplinasAtualizadas.reduce(
+                (acc, disciplina) => acc + disciplina.creditos,
+                0
+            );
+        
+            // Subtrai os créditos atualizados do total de créditos restantes do aluno
+            aluno.creditos_restantes -= totalCreditos;
+            await aluno.save();
     
             res.status(200).json({ message: 'Roadmap atualizado com sucesso!' });
         } catch (err) {

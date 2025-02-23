@@ -3,8 +3,25 @@ import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config'; 
 
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet'; // Importando o Leaflet
+import markerIconPng from 'leaflet/dist/images/marker-icon.png';
+import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
+
+// Marcador do mapa (imagem que aparece pra mostrar aonde vc ta)
+const defaultIcon = new L.Icon({
+  iconUrl: markerIconPng,
+  shadowUrl: markerShadowPng,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const PerfilPage = () => {
   const [userInfo, setUserInfo] = useState(null);  // Armazena as informações do aluno
+  const [location, setLocation] = useState(null); // Armazena a localização do aluno
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +69,31 @@ const PerfilPage = () => {
     fetchUserInfo();
   }, [navigate]);
 
+
+  useEffect(() => {
+    // Função para obter a localização do usuário
+    const fetchLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setLocation({ latitude, longitude });
+          },
+          (error) => {
+            console.error('Erro ao obter localização:', error);
+            setLocation({ error: 'Não foi possível obter a localização.' });
+          }
+        );
+      } else {
+        console.error('Geolocalização não é suportada pelo navegador.');
+        setLocation({ error: 'Geolocalização não é suportada pelo navegador.' });
+      }
+    };
+
+    fetchLocation();
+  }, []);
+
+
   const handleLogout = () => {
     // Limpa os dados do usuário no localStorage
     localStorage.removeItem("user");
@@ -72,6 +114,16 @@ const disciplinasFeitas = userInfo.disciplinas.filter(
     disciplina.AlunoDisciplina.status === 1
 ).length;
 const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
+
+
+// Cálculo das disciplinas obrigatórias restantes
+  const disciplinasObrigatoriasRestantes = userInfo.disciplinas.filter(
+    (disciplina) =>
+      disciplina.obrigatoria === true &&
+      disciplina.AlunoDisciplina &&
+      disciplina.AlunoDisciplina.status === 0
+  ).length;
+
 
   return (
     <div className="min-h-screen bg-[#0C0F14] text-white">
@@ -98,7 +150,7 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
         {/* Seção de Informações */}
         <div className="flex flex-col w-full md:w-2/3 mt-8 md:mt-0 md:pl-8">
           <div className="flex flex-col md:flex-row justify-between gap-4">
-            {/* Campo 1: Disciplinas restantes */}
+            {/* Campo 1: Disciplinas do curso */}
             <div className="flex flex-col items-center justify-center bg-transparent border border-purple-600 rounded-lg p-6 w-full md:w-1/2">
               <h3 className="text-lg font-semibold text-purple-400">
                 Disciplinas do curso
@@ -116,12 +168,20 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
           </div>
 
           <div className="flex flex-col md:flex-row justify-between gap-4 mt-2">
-            {/* Campo 1: Disciplinas restantes */}
+            {/* Campo 3: Disciplinas restantes */}
             <div className="flex flex-col items-center justify-center bg-transparent border border-purple-600 rounded-lg p-6 w-full md:w-1/2">
               <h3 className="text-lg font-semibold text-purple-400">
                 Disciplinas Restantes
               </h3>
               <p className="text-3xl font-bold mt-2">{disciplinasRestantes}</p>
+            </div>
+
+            {/* Campo 4: Disciplinas obrigatórias restantes */}
+            <div className="flex flex-col items-center justify-center bg-transparent border border-purple-600 rounded-lg p-6 w-full md:w-1/2">
+              <h3 className="text-lg font-semibold text-purple-400">
+                Disciplinas Obrigatórias Restantes
+              </h3>
+              <p className="text-3xl font-bold mt-2">{disciplinasObrigatoriasRestantes}</p>
             </div>
 
           </div>
@@ -132,20 +192,34 @@ const disciplinasRestantes = totalDisciplinas - disciplinasFeitas;
       </div>
 
 
-      <div className="flex justify-center items-center gap-4 min-h-screen bg-[#0C0F14] text-white">
-        {/* Botão para o roadmap */}
-        <button
-          onClick={() => navigate("/roadmap")}
-          className="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-500 transition duration-300"
-        >
+        <div className="flex flex-col justify-center items-center gap-4">
+        
+          {location ? (
+            location.error ? (
+              <div className="bg-red-600 text-white py-2 px-6 rounded-lg">
+                {location.error}
+              </div>
+            ) : (
+              <div className="w-full max-w-md h-64 mt-6 py-6">
+                <h3 className="text-lg font-semibold text-purple-400">📍 Sua localização atual</h3>
+                <MapContainer center={[location.latitude, location.longitude]} zoom={15} className="w-full h-full rounded-lg">
+                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  <Marker position={[location.latitude, location.longitude]} icon={defaultIcon}>
+                    <Popup>Você está aqui!</Popup>
+                  </Marker>
+                </MapContainer>
+              </div>
+            )
+          ) : (
+            <div>Obtendo localização...</div>
+          )}
+
+
+        <button onClick={() => navigate("/roadmap")} className="bg-purple-600 text-white py-2 px-6 rounded-lg">
           Ver Roadmap
         </button>
 
-        {/* Botão de Logout */}
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-500 transition duration-300"
-        >
+        <button onClick={handleLogout} className="bg-red-600 text-white py-2 px-6 rounded-lg">
           Sair
         </button>
       </div>
